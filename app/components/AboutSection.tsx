@@ -81,7 +81,7 @@ export default function About() {
           experience.
         </p>
         <a
-          href=""
+          href="https://drive.google.com/file/d/1HVUo85TCyU_6UcCzmoICPgwBEcrSnHnq/view?usp=sharing"
           target="_blank"
           className="font-semibold bg-black text-white text-lg rounded-sm py-3 px-8 flex items-center justify-center gap-2 md:w-fit md:justify-start"
         >
