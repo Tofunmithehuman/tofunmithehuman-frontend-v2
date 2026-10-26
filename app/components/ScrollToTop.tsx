@@ -2,44 +2,34 @@
 
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
+import { getLenis } from "./Lenisinstance";
 
-function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+export default function ScrollToTop() {
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = (): void => {
-      if (window.pageYOffset > 200) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener("scroll", toggleVisibility);
-
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    const toggle = () => setIsVisible(window.scrollY > 300);
+    window.addEventListener("scroll", toggle, { passive: true });
+    return () => window.removeEventListener("scroll", toggle);
   }, []);
 
-  const scrollToTop = (): void => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  const scrollToTop = () => {
+    const lenis = getLenis();
+    if (lenis) lenis.scrollTo(0, { duration: 1.8 });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <>
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-black/90 text-white border-white border-2 p-3 rounded-full shadow-lg hover:bg-black transition-all duration-300 z-50 hover:scale-110"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp size={20} />
-        </button>
-      )}
-    </>
+    <button
+      onClick={scrollToTop}
+      aria-label="Scroll to top"
+      className={`fixed bottom-5 right-5 z-50 rounded-full border-2 border-white bg-black/90 p-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-black md:bottom-6 md:right-6 ${
+        isVisible
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-4 opacity-0"
+      }`}
+    >
+      <ArrowUp size={20} />
+    </button>
   );
 }
-
-export default ScrollToTop;

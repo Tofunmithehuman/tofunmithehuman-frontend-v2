@@ -42,18 +42,19 @@ export default function HeroSection() {
   );
 
   return (
+    // pt-24/28 leaves room for the floating navbar
     <div
       ref={containerRef}
-      className="text-white p-5 md:p-8 h-screen flex flex-col"
+      className="flex h-screen flex-col p-5 pt-24 text-white md:p-8 md:pt-28"
     >
-      <section className="flex-1 flex flex-col">
-        <div className="flex gap-4 flex-col md:flex-row justify-between flex-1">
+      <section className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col justify-between gap-4 md:flex-row">
           {/* Column 1 */}
-          <div className="flex flex-col md:justify-between md:h-full">
+          <div className="flex flex-col md:h-full md:justify-between">
             <div className="uppercase">
               <h1
                 ref={headingRef}
-                className="text-[clamp(3rem,4vw+2rem,6rem)] font-bold mb-4 uppercase leading-[1.1]"
+                className="mb-4 text-[clamp(3rem,4vw+2rem,6rem)] font-bold uppercase leading-[1.1]"
               >
                 FullStack <br /> Developer
               </h1>
@@ -72,17 +73,17 @@ export default function HeroSection() {
           </div>
 
           {/* Column 2 */}
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex h-full flex-col justify-between">
             <div ref={imageRef}>
               <Image
                 src={Tofunmithehuman}
                 alt="Tofunmithehuman"
                 loading="eager"
-                className="w-full aspect-3.5/3 object-cover md:w-70 md:aspect-auto"
+                className="aspect-3.5/3 w-full object-cover md:aspect-auto md:w-70"
               />
             </div>
 
-            <div className="flex justify-between items-end md:block">
+            <div className="flex items-end justify-between md:block">
               <div
                 ref={(el) => {
                   arrowRefs.current[1] = el;
@@ -93,7 +94,7 @@ export default function HeroSection() {
               </div>
               <h1
                 ref={nameRef}
-                className="text-2xl md:text-3xl font-bold text-right mt-4 uppercase"
+                className="mt-4 text-right text-2xl font-bold uppercase md:text-3xl"
               >
                 Bolaji <br /> Oluwatofunmi
               </h1>

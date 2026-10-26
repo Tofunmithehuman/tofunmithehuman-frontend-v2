@@ -2,11 +2,313 @@
 
 @theme {
   --font-sans: var(--font-plus-jakarta-sans);
+  --color-cream: #f6f1e7;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-logo: var(--font-syne), var(--font-plus-jakarta-sans), sans-serif;
 }
 
 html {
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
 html::-webkit-scrollbar {
   display: none;
+}
+
+/* Lenis recommended base styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+}
+
+/* ============ Illustration animations ============
+   Tweak per element with inline CSS vars: --d (duration), --dl (delay) */
+@keyframes k-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes k-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+@keyframes k-rise {
+  0% {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+}
+@keyframes k-pop {
+  0%,
+  8% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  22%,
+  85% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+@keyframes k-type {
+  0% {
+    transform: scaleX(0);
+  }
+  40%,
+  80% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+@keyframes k-rail {
+  to {
+    transform: translateX(var(--x, 130px));
+  }
+}
+@keyframes k-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+@keyframes k-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+@keyframes k-swing {
+  0%,
+  100% {
+    transform: rotate(-9deg);
+  }
+  50% {
+    transform: rotate(9deg);
+  }
+}
+@keyframes k-bar {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes k-draw {
+  0% {
+    stroke-dashoffset: 200;
+  }
+  50%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes k-cursor {
+  0%,
+  100% {
+    transform: translate(40px, 140px);
+  }
+  25% {
+    transform: translate(60px, 82px);
+  }
+  50% {
+    transform: translate(170px, 82px);
+  }
+  75% {
+    transform: translate(250px, 120px);
+  }
+}
+@keyframes k-shrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0.28);
+  }
+}
+@keyframes k-fade {
+  to {
+    opacity: 0.12;
+  }
+}
+@keyframes k-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes k-slide {
+  from {
+    left: -30%;
+    opacity: 0;
+  }
+  15%,
+  70% {
+    opacity: 1;
+  }
+  to {
+    left: 58%;
+    opacity: 0;
+  }
+}
+@keyframes k-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+@keyframes k-rowin {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.a-spin {
+  animation: k-spin var(--d, 12s) linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.a-spin-r {
+  animation: k-spin var(--d, 12s) linear infinite reverse;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.a-blink {
+  animation: k-blink var(--d, 1.6s) ease-in-out var(--dl, 0s) infinite;
+}
+.a-rise {
+  animation: k-rise var(--d, 2.4s) ease-out var(--dl, 0s) infinite;
+  transform-box: fill-box;
+}
+.a-pop {
+  animation: k-pop var(--d, 4s) ease-out var(--dl, 0s) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.a-type {
+  animation: k-type var(--d, 3.6s) ease-in-out var(--dl, 0s) infinite;
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+.a-rail {
+  animation: k-rail var(--d, 3s) var(--ease, ease-in-out) var(--dl, 0s) infinite
+    alternate;
+}
+.a-ping {
+  animation: k-ping 2s ease-out var(--dl, 0s) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.a-ring {
+  animation: k-ring 2.4s ease-out var(--dl, 0s) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.a-swing {
+  animation: k-swing 3.2s ease-in-out infinite;
+  transform-origin: 50% 0;
+}
+.a-bar {
+  animation: k-bar var(--d, 1.6s) ease-in-out var(--dl, 0s) infinite;
+  transform-origin: bottom;
+}
+.a-draw {
+  stroke-dasharray: 200;
+  animation: k-draw var(--d, 3s) ease-in-out var(--dl, 0s) infinite;
+}
+.a-cursor {
+  animation: k-cursor 7s ease-in-out infinite;
+}
+.a-shrink {
+  animation: k-shrink 2.6s ease-in-out infinite alternate;
+  transform-origin: left center;
+}
+.a-fade {
+  animation: k-fade 2.2s ease-in-out var(--dl, 0s) infinite alternate;
+}
+.art-float {
+  animation: k-float 6s ease-in-out infinite;
+}
+.art-float-slow {
+  animation: k-float 9s ease-in-out infinite reverse;
+}
+.art-slide {
+  animation: k-slide 6s linear infinite;
+}
+.art-dash {
+  animation: k-dash 1.2s linear infinite;
+}
+.row-in {
+  animation: k-rowin 0.45s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a-spin,
+  .a-spin-r,
+  .a-blink,
+  .a-rise,
+  .a-pop,
+  .a-type,
+  .a-rail,
+  .a-ping,
+  .a-ring,
+  .a-swing,
+  .a-bar,
+  .a-draw,
+  .a-cursor,
+  .a-shrink,
+  .a-fade,
+  .art-float,
+  .art-float-slow,
+  .art-slide,
+  .art-dash,
+  .row-in {
+    animation: none;
+  }
 }
