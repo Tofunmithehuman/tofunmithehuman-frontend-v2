@@ -245,7 +245,7 @@ function Stat({
       {viz}
       <div>
         <span
-          className="count block text-8xl font-bold leading-none tracking-tighter md:text-9xl"
+          className="count block text-8xl font-bold leading-none tracking-tighter md:text-8xl"
           data-to={value}
           data-prefix={prefix}
           data-suffix={suffix}

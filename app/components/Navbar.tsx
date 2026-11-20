@@ -104,7 +104,7 @@ export default function Navbar() {
     <>
       <header
         ref={headerRef}
-        className="fixed inset-x-3 top-3 z-50 opacity-0 md:inset-x-6 md:top-5"
+        className="fixed inset-x-3 top-3 z-60 opacity-0 md:inset-x-6 md:top-5"
       >
         <div className="flex w-full items-center justify-between gap-1 rounded-full bg-[#1c1c1c] p-1.5 text-white shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
           {/* Logo: round mark + wordmark */}
@@ -181,7 +181,7 @@ export default function Navbar() {
         id="mobile-menu"
         aria-hidden={!open}
         data-lenis-prevent
-        className={`fixed inset-0 z-40 flex flex-col justify-between bg-cream px-6 pb-8 pt-28 text-black transition-[clip-path] duration-700 ease-[cubic-bezier(.76,0,.24,1)] lg:hidden ${
+        className={`fixed inset-0 z-50 flex flex-col justify-between bg-cream px-6 pb-8 pt-28 text-black transition-[clip-path] duration-700 ease-[cubic-bezier(.76,0,.24,1)] lg:hidden ${
           open ? "" : "pointer-events-none"
         }`}
         style={{

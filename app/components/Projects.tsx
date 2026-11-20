@@ -26,7 +26,7 @@ const projects: Project[] = [
     title: "LuraVPN",
     about:
       "A VPN and privacy platform with fast, encrypted connections, AI-powered features, malware protection and a data breach scanner called DataShield.",
-    href: "#",
+    href: "https://luravpn.com/",
     category: "VPN · Privacy",
     tags: ["Next.js", "Tailwind"],
     gradient: "linear-gradient(135deg,#0c4a5e 0%,#0e2a4d 55%,#141b45 100%)",
@@ -36,7 +36,7 @@ const projects: Project[] = [
     title: "Dave Mol",
     about:
       "A luxury fashion brand website built around timeless elegance, simplicity and class, showcasing premium collections in a refined, minimal style.",
-    href: "#",
+    href: "https://dave-mol.vercel.app/",
     category: "Fashion · Website",
     tags: ["Next.js", "GSAP"],
     gradient: "linear-gradient(135deg,#1c1410 0%,#4a3a2c 60%,#6b5440 100%)",
@@ -46,7 +46,7 @@ const projects: Project[] = [
     title: "Tixwav",
     about:
       "An event ticketing platform with an animated, component-driven frontend, Redis caching and queued jobs for emails, tickets and payment confirmation.",
-    href: "#",
+    href: "https://www.tixwav.com/",
     category: "Events · Ticketing",
     tags: ["React", "Express", "MongoDB", "Redis", "BullMQ"],
     gradient: "linear-gradient(135deg,#2e0a3f 0%,#5a1470 55%,#8a1f7d 100%)",

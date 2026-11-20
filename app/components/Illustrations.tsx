@@ -324,6 +324,15 @@ export function PipelineArt() {
         className="art-dash"
         opacity=".5"
       />
+      <circle
+        cx="36"
+        cy="60"
+        r="5"
+        {...dot}
+        className="a-rail"
+        style={v("3.4s", "0s", { "--x": "228px", "--ease": "linear" })}
+        stroke="none"
+      />
       {nodes.map(([label, x], i) => (
         <g key={label}>
           <circle cx={x} cy="60" r="23" {...dot} />
@@ -347,15 +356,6 @@ export function PipelineArt() {
           />
         </g>
       ))}
-      <circle
-        cx="36"
-        cy="60"
-        r="5"
-        {...dot}
-        className="a-rail"
-        style={v("3.4s", "0s", { "--x": "228px", "--ease": "linear" })}
-        stroke="none"
-      />
     </S>
   );
 }
