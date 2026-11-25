@@ -5,9 +5,8 @@ import { ArrowUpRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GITHUB } from "@/app/components/Links";
 import { v } from "./Illustrations";
-import { DaveMock, LuraMock, TixMock } from "./Projectmocks";
+import { GenzMock, LuraMock, TixMock } from "./Projectmocks";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,14 +32,14 @@ const projects: Project[] = [
     mock: <LuraMock />,
   },
   {
-    title: "Dave Mol",
+    title: "Genzmummy Store",
     about:
-      "A luxury fashion brand website built around timeless elegance, simplicity and class, showcasing premium collections in a refined, minimal style.",
-    href: "https://dave-mol.vercel.app/",
-    category: "Fashion · Website",
-    tags: ["Next.js", "GSAP"],
-    gradient: "linear-gradient(135deg,#1c1410 0%,#4a3a2c 60%,#6b5440 100%)",
-    mock: <DaveMock />,
+      "A beauty and skincare e-commerce store for Gen Z mothers, curating glow products, lotions and self-care essentials with a clean, modern shopping experience.",
+    href: "https://www.genzmummystore.com/",
+    category: "Beauty · E-commerce",
+    tags: ["Next.js", "Tailwind"],
+    gradient: "linear-gradient(135deg,#4a1942 0%,#7a2f5c 50%,#c45c8a 100%)",
+    mock: <GenzMock />,
   },
   {
     title: "Tixwav",
@@ -158,7 +157,12 @@ export default function Projects() {
               key={project.title}
               className={i % 2 === 1 ? "proj-offset md:mt-20" : ""}
             >
-              <a href={project.href} className="group block">
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
                 {/* data-cursor makes the custom cursor turn into a "View" bubble */}
                 <div
                   data-cursor="View"
@@ -198,10 +202,10 @@ export default function Projects() {
             </article>
           ))}
 
-          {/* Fills the cell next to the third project */}
+          {/* More projects card → /projects */}
           <a
-            href={GITHUB}
-            data-cursor="GitHub"
+            href="/projects"
+            data-cursor="Projects"
             className="proj-offset group relative flex aspect-4/3 flex-col justify-between overflow-hidden rounded-3xl bg-black p-6 text-white md:mt-20"
           >
             <svg
@@ -217,7 +221,7 @@ export default function Projects() {
               <ArrowUpRight size={28} />
             </span>
             <span className="relative text-3xl font-bold leading-tight md:text-4xl">
-              More on GitHub
+              More projects
             </span>
           </a>
         </div>
