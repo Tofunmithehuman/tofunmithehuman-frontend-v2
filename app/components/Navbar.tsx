@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 import { Menu, X } from "lucide-react";
 import { EMAIL } from "@/app/components/Links";
@@ -17,6 +18,9 @@ const links = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const router = useRouter();
+
   const headerRef = useRef<HTMLElement>(null);
   const hiddenRef = useRef(false);
   const openRef = useRef(false);
@@ -54,8 +58,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Highlight the link for the section in view
+  // Highlight the link for the section in view (re-runs on route change)
   useEffect(() => {
+    // On the projects page, keep "Work" lit instead of observing sections
+    if (pathname === "/projects") {
+      setActive("#work");
+      return;
+    }
+    setActive("");
+
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach(
@@ -68,7 +79,20 @@ export default function Navbar() {
       if (el) io.observe(el);
     });
     return () => io.disconnect();
-  }, []);
+  }, [pathname]);
+
+  // After arriving on the home page from another route, scroll to the hash
+  useEffect(() => {
+    if (pathname !== "/" || !window.location.hash) return;
+    const t = setTimeout(() => {
+      const target = document.querySelector<HTMLElement>(window.location.hash);
+      if (!target) return;
+      const lenis = getLenis();
+      if (lenis) lenis.scrollTo(target, { duration: 1.2 });
+      else target.scrollIntoView();
+    }, 400);
+    return () => clearTimeout(t);
+  }, [pathname]);
 
   // Lock scroll while the mobile menu is open
   useEffect(() => {
@@ -92,12 +116,18 @@ export default function Navbar() {
     e.preventDefault();
     e.stopPropagation();
     setOpen(false);
-    getLenis()?.start();
-    const target = document.querySelector<HTMLElement>(href);
-    if (!target) return;
     const lenis = getLenis();
-    if (lenis) lenis.scrollTo(target, { duration: 1.6 });
-    else target.scrollIntoView({ behavior: "smooth" });
+    lenis?.start();
+
+    const target = document.querySelector<HTMLElement>(href);
+    if (target) {
+      if (lenis) lenis.scrollTo(target, { duration: 1.6 });
+      else target.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    // Not on the home page: go there, the hash effect above does the scroll
+    router.push(`/${href}`);
   };
 
   return (

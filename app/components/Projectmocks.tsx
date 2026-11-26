@@ -1,7 +1,12 @@
+import type { CSSProperties } from "react";
 import { v } from "./Illustrations";
 
 // Small mono label used inside the mockups
 const mono = "font-mono uppercase tracking-widest";
+
+// Gentle horizontal sway for wave layers (uses the a-rail animation)
+const sway = (x: string, d: string, dl = "0s"): CSSProperties =>
+  ({ ...v(d, dl), "--x": x }) as CSSProperties;
 
 /* ---------------- LuraVPN: connection + DataShield ---------------- */
 
@@ -213,7 +218,9 @@ export function GenzMock() {
           <div className="h-16 w-[70%] rounded-b-2xl bg-linear-to-b from-rose-300/90 to-rose-500/80 shadow-lg md:h-20">
             <div className="mx-auto mt-2 h-1.5 w-[40%] rounded-full bg-white/40" />
           </div>
-          <span className={`${mono} mt-1.5 text-[6px] text-white/70 md:text-[8px]`}>
+          <span
+            className={`${mono} mt-1.5 text-[6px] text-white/70 md:text-[8px]`}
+          >
             Serum
           </span>
         </div>
@@ -228,7 +235,9 @@ export function GenzMock() {
             <div className="absolute inset-x-2 top-3 h-1 rounded-full bg-white/35" />
             <div className="absolute bottom-3 left-1/2 h-6 w-6 -translate-x-1/2 rounded-full border border-white/40" />
           </div>
-          <span className={`${mono} mt-1.5 text-[7px] text-white/80 md:text-[9px]`}>
+          <span
+            className={`${mono} mt-1.5 text-[7px] text-white/80 md:text-[9px]`}
+          >
             Glow Lotion
           </span>
         </div>
@@ -242,7 +251,9 @@ export function GenzMock() {
           <div className="h-14 w-full rounded-b-2xl bg-linear-to-b from-fuchsia-300/90 to-fuchsia-600/80 shadow-lg md:h-16">
             <div className="mx-auto mt-3 size-4 rounded-full border border-white/50" />
           </div>
-          <span className={`${mono} mt-1.5 text-[6px] text-white/70 md:text-[8px]`}>
+          <span
+            className={`${mono} mt-1.5 text-[6px] text-white/70 md:text-[8px]`}
+          >
             Night Cream
           </span>
         </div>
@@ -260,7 +271,9 @@ export function GenzMock() {
           <p className="truncate text-[10px] font-semibold md:text-sm">
             Added to bag
           </p>
-          <p className={`${mono} truncate text-[7px] text-white/55 md:text-[9px]`}>
+          <p
+            className={`${mono} truncate text-[7px] text-white/55 md:text-[9px]`}
+          >
             Ivory Glow · ₦16,000
           </p>
         </div>
@@ -276,91 +289,129 @@ export function GenzMock() {
 
 export function EdenLegacyMock() {
   return (
-    <div className="absolute inset-0 text-white overflow-hidden">
-      {/* deep ocean glow */}
-      <div className="absolute inset-x-0 bottom-0 h-[55%] bg-linear-to-t from-cyan-900/40 to-transparent" />
+    <div className="absolute inset-0 overflow-hidden text-white">
+      {/* sky glow */}
+      <div className="absolute inset-0 bg-linear-to-b from-cyan-200/10 via-transparent to-transparent" />
 
       <div
-        className={`${mono} absolute left-1/2 top-[13%] -translate-x-1/2 whitespace-nowrap rounded-full border border-cyan-300/30 bg-cyan-500/10 px-3 py-1 text-[8px] text-cyan-100/80 md:text-[10px]`}
+        className={`${mono} absolute left-1/2 top-[10%] -translate-x-1/2 whitespace-nowrap rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[8px] md:text-[10px]`}
       >
-        Ocean · Legacy · Impact
+        Ocean legacy · Community impact
       </div>
-
-      <p className="font-logo absolute left-1/2 top-[23%] -translate-x-1/2 text-[clamp(0.95rem,2.9vw,1.65rem)] font-bold tracking-[0.18em]">
+      <p className="font-logo absolute left-1/2 top-[18%] -translate-x-1/2 whitespace-nowrap text-[clamp(1rem,3vw,1.7rem)] font-bold tracking-[0.2em]">
         EDENOCEANS
       </p>
       <p
-        className={`${mono} absolute left-1/2 top-[33%] -translate-x-1/2 text-[7px] text-white/50 md:text-[9px]`}
+        className={`${mono} absolute left-1/2 top-[28%] -translate-x-1/2 whitespace-nowrap text-[8px] text-cyan-100/70 md:text-[10px]`}
       >
         Legacy Foundation
       </p>
 
-      {/* orbiting rings + core */}
-      <div className="absolute left-1/2 top-[55%] aspect-square w-[38%] -translate-x-1/2 -translate-y-1/2">
-        <svg
-          viewBox="0 0 120 120"
-          className="size-full"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          aria-hidden
-        >
-          <circle
-            cx="60"
-            cy="60"
-            r="54"
-            strokeDasharray="4 10"
-            opacity=".4"
-            className="a-spin"
-            style={v("22s")}
-          />
-          <circle
-            cx="60"
-            cy="60"
-            r="40"
-            strokeDasharray="2 8"
-            opacity=".55"
-            className="a-spin"
-            style={v("14s")}
-          />
-          <circle cx="60" cy="60" r="22" opacity=".7" className="a-ring" />
-          {/* soft core */}
-          <circle cx="60" cy="60" r="10" fill="rgba(34,211,238,0.35)" />
-        </svg>
-
-        {/* floating particles */}
-        {[
-          { x: "18%", y: "22%", d: "0s" },
-          { x: "72%", y: "28%", d: "0.8s" },
-          { x: "25%", y: "68%", d: "1.4s" },
-          { x: "70%", y: "65%", d: "2s" },
-        ].map((p, i) => (
-          <span
-            key={i}
-            className="art-float absolute size-1.5 rounded-full bg-cyan-300/80"
-            style={{ left: p.x, top: p.y, animationDelay: p.d }}
-          />
-        ))}
+      {/* sun with a soft pulse */}
+      <div className="absolute right-[9%] top-[31%] aspect-square w-[12%]">
+        <span className="a-ring absolute inset-0 rounded-full border border-amber-100/60" />
+        <span className="absolute inset-[12%] rounded-full bg-linear-to-b from-amber-100 to-amber-300/90 shadow-[0_0_40px_rgba(253,230,138,0.55)]" />
       </div>
 
-      <div className="absolute bottom-[9%] left-1/2 flex w-[74%] -translate-x-1/2 items-center justify-between rounded-xl border border-cyan-400/20 bg-cyan-950/40 px-3 py-2.5 backdrop-blur-sm">
-        <div>
-          <p className={`${mono} text-[7px] text-cyan-200/70 md:text-[9px]`}>
-            Active programmes
-          </p>
-          <p className="mt-0.5 text-[11px] font-semibold md:text-sm">
-            Coastal stewardship
-          </p>
+      {/* sailboat riding the back wave */}
+      <svg
+        viewBox="0 0 40 40"
+        className="art-float absolute left-[22%] top-[35%] w-[10%]"
+        fill="none"
+        aria-hidden
+      >
+        <path d="M20 4v24L8 28z" fill="rgba(255,255,255,.92)" />
+        <path d="M22 10l10 18H22z" fill="rgba(255,255,255,.6)" />
+        <path d="M6 31h28l-4 6H10z" fill="#08303a" />
+      </svg>
+
+      {/* three wave layers, each swaying at its own pace */}
+      <div className="absolute inset-x-[-12%] bottom-0 h-[56%]">
+        <svg
+          viewBox="0 0 400 100"
+          preserveAspectRatio="none"
+          className="a-rail size-full"
+          style={sway("-8%", "7s")}
+          aria-hidden
+        >
+          <path
+            d="M0 30C50 8 100 8 150 30S250 52 300 30S380 8 400 30V100H0Z"
+            fill="rgba(165,243,252,.22)"
+          />
+        </svg>
+      </div>
+      <div className="absolute inset-x-[-12%] bottom-0 h-[46%]">
+        <svg
+          viewBox="0 0 400 100"
+          preserveAspectRatio="none"
+          className="a-rail size-full"
+          style={sway("8%", "6s", "0.6s")}
+          aria-hidden
+        >
+          <path
+            d="M0 40C60 18 110 18 160 40S260 62 310 40S380 22 400 40V100H0Z"
+            fill="rgba(34,211,238,.28)"
+          />
+        </svg>
+      </div>
+      <div className="absolute inset-x-[-12%] bottom-0 h-[34%]">
+        <svg
+          viewBox="0 0 400 100"
+          preserveAspectRatio="none"
+          className="a-rail size-full"
+          style={sway("-6%", "5s", "1.1s")}
+          aria-hidden
+        >
+          <path
+            d="M0 36C50 14 100 14 150 36S250 58 300 36S380 14 400 36V100H0Z"
+            fill="rgba(8,47,60,.55)"
+          />
+        </svg>
+      </div>
+
+      {/* sparkles on the water */}
+      {[
+        { x: "34%", y: "58%", d: "0s" },
+        { x: "62%", y: "54%", d: "0.7s" },
+        { x: "78%", y: "62%", d: "1.3s" },
+        { x: "18%", y: "64%", d: "1.9s" },
+      ].map((s, i) => (
+        <span
+          key={i}
+          className="a-blink absolute size-1 rounded-full bg-white/90"
+          style={{ left: s.x, top: s.y, ...v("2.2s", s.d) }}
+        />
+      ))}
+
+      {/* impact cards */}
+      <div className="absolute bottom-[7%] left-[6%] w-[41%] rounded-xl border border-white/15 bg-cyan-950/45 px-3 py-2.5 backdrop-blur-sm">
+        <p className={`${mono} text-[7px] text-cyan-200/70 md:text-[9px]`}>
+          Coastline restored
+        </p>
+        <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/15">
+          <div
+            className="a-type h-full rounded-full bg-cyan-300"
+            style={v("5s")}
+          />
         </div>
-        <div className="flex -space-x-1.5">
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className="size-6 rounded-full border border-cyan-300/40 bg-cyan-500/30"
-              style={{ animationDelay: `${i * 0.3}s` }}
-            />
-          ))}
+        <p className="mt-1.5 text-[11px] font-semibold md:text-sm">12 km</p>
+      </div>
+
+      <div className="absolute bottom-[7%] right-[6%] w-[41%] rounded-xl border border-white/15 bg-cyan-950/45 px-3 py-2.5 backdrop-blur-sm">
+        <p className={`${mono} text-[7px] text-cyan-200/70 md:text-[9px]`}>
+          Community partners
+        </p>
+        <div className="mt-1.5 flex -space-x-1.5">
+          {["bg-cyan-300", "bg-teal-300", "bg-sky-300", "bg-emerald-300"].map(
+            (c, i) => (
+              <span
+                key={i}
+                className={`${c} size-4 rounded-full border border-cyan-950/60 md:size-5`}
+              />
+            ),
+          )}
         </div>
+        <p className="mt-1.5 text-[11px] font-semibold md:text-sm">24 active</p>
       </div>
     </div>
   );
@@ -524,78 +575,106 @@ export function AfriNoirMock() {
 /* ---------------- EdenOceans Club / main ---------------- */
 
 export function EdenOceansMock() {
+  const orbit = [
+    { a: 0, c: "bg-emerald-300" },
+    { a: 72, c: "bg-teal-200" },
+    { a: 144, c: "bg-emerald-400" },
+    { a: 216, c: "bg-lime-200" },
+    { a: 288, c: "bg-teal-300" },
+  ];
+  const chips = [
+    { label: "Leadership", pos: "left-[6%] top-[36%]", delay: "0s" },
+    { label: "Growth · 82%", pos: "right-[5%] top-[44%]", delay: "0.8s" },
+    { label: "Community", pos: "left-[9%] top-[63%]", delay: "1.6s" },
+  ];
+
   return (
-    <div className="absolute inset-0 text-white overflow-hidden">
-      {/* soft breathing glow */}
-      <div
-        className="art-float absolute left-1/2 top-[42%] size-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400/15 blur-3xl md:size-48"
-        style={{ animationDelay: "0s" }}
-      />
+    <div className="absolute inset-0 overflow-hidden text-white">
+      {/* breathing glow */}
+      <div className="art-float absolute left-1/2 top-[50%] size-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400/15 blur-3xl md:size-56" />
 
       <p
-        className={`${mono} absolute left-1/2 top-[12%] -translate-x-1/2 text-[8px] text-emerald-100/65 md:text-[10px]`}
+        className={`${mono} absolute left-1/2 top-[10%] -translate-x-1/2 whitespace-nowrap text-[8px] text-emerald-100/65 md:text-[10px]`}
       >
         Wellness · Leadership · Women
       </p>
-      <p className="font-logo absolute left-1/2 top-[21%] -translate-x-1/2 text-[clamp(1rem,3vw,1.7rem)] font-bold tracking-[0.22em]">
+      <p className="font-logo absolute left-1/2 top-[18%] -translate-x-1/2 whitespace-nowrap text-[clamp(1rem,3vw,1.7rem)] font-bold tracking-[0.22em]">
         EDENOCEANS
       </p>
 
-      {/* nested rings + diamond */}
-      <div className="absolute left-1/2 top-[52%] aspect-square w-[42%] -translate-x-1/2 -translate-y-1/2">
-        <svg
-          viewBox="0 0 120 120"
-          className="size-full"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          aria-hidden
-        >
-          <circle
-            cx="60"
-            cy="60"
-            r="56"
-            strokeDasharray="3 9"
-            opacity=".35"
-            className="a-spin"
-            style={v("28s")}
-          />
-          <circle
-            cx="60"
-            cy="60"
-            r="42"
-            opacity=".5"
-            className="a-ring"
-          />
-          <circle
-            cx="60"
-            cy="60"
-            r="28"
-            strokeDasharray="2 6"
-            opacity=".65"
-            className="a-spin"
-            style={v("16s")}
-          />
-          {/* diamond / geometric center */}
-          <path
-            d="M60 42 L74 60 L60 78 L46 60 Z"
-            fill="rgba(52,211,153,0.2)"
-            stroke="rgba(167,243,208,0.7)"
-            strokeWidth="1.5"
-            className="a-draw"
-            style={v("4s")}
-          />
-        </svg>
+      {/* member orbit */}
+      <div className="absolute left-1/2 top-[50%] aspect-square w-[36%] -translate-x-1/2 -translate-y-1/2">
+        <div className="a-spin absolute inset-0" style={v("40s")}>
+          <span className="absolute inset-0 rounded-full border border-dashed border-emerald-200/35" />
+          {orbit.map((o, i) => (
+            <div
+              key={i}
+              className="absolute inset-0"
+              style={{ transform: `rotate(${o.a}deg)` }}
+            >
+              <span
+                className={`${o.c} absolute left-1/2 top-0 size-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-emerald-950/70 shadow-lg md:size-5`}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="a-spin-r absolute inset-[16%]" style={v("28s")}>
+          <span className="absolute inset-0 rounded-full border border-emerald-200/20" />
+        </div>
+        <span className="a-ring absolute inset-[22%] rounded-full border border-emerald-300/40" />
+
+        {/* centre medallion */}
+        <div className="absolute inset-[24%] grid place-items-center rounded-full border border-emerald-300/25 bg-emerald-950/55 backdrop-blur-sm">
+          <svg
+            viewBox="0 0 24 24"
+            className="a-spin size-1/2 text-emerald-200"
+            style={v("14s")}
+            fill="currentColor"
+            aria-hidden
+          >
+            <path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" />
+          </svg>
+        </div>
       </div>
 
-      {/* bottom membership strip */}
-      <div className="absolute bottom-[9%] left-1/2 flex w-[70%] -translate-x-1/2 flex-col items-center gap-1.5 rounded-xl border border-emerald-400/20 bg-emerald-950/45 px-4 py-2.5 backdrop-blur-sm">
-        <p className="text-[11px] font-semibold tracking-wide md:text-sm">
-          Signature wellness
-        </p>
-        <p className={`${mono} text-[7px] text-emerald-200/60 md:text-[9px]`}>
-          Reimagined for you · Exclusive
-        </p>
+      {/* floating pillars */}
+      {chips.map((c) => (
+        <span
+          key={c.label}
+          className={`${mono} art-float absolute ${c.pos} whitespace-nowrap rounded-full border border-emerald-300/25 bg-emerald-950/55 px-2.5 py-1 text-[7px] text-emerald-100/85 backdrop-blur-sm md:px-3 md:text-[9px]`}
+          style={{ animationDelay: c.delay }}
+        >
+          {c.label}
+        </span>
+      ))}
+
+      {/* membership strip */}
+      <div className="absolute bottom-[7%] left-1/2 flex w-[76%] -translate-x-1/2 items-center justify-between rounded-xl border border-emerald-400/20 bg-emerald-950/50 px-3 py-2.5 backdrop-blur-sm">
+        <div className="min-w-0">
+          <p className="truncate text-[11px] font-semibold tracking-wide md:text-sm">
+            Signature wellness
+          </p>
+          <p
+            className={`${mono} mt-0.5 truncate text-[7px] text-emerald-200/60 md:text-[9px]`}
+          >
+            Exclusive community
+          </p>
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <div className="hidden -space-x-1.5 sm:flex">
+            {["bg-emerald-300", "bg-teal-200", "bg-lime-200"].map((c, i) => (
+              <span
+                key={i}
+                className={`${c} size-5 rounded-full border border-emerald-950/70`}
+              />
+            ))}
+          </div>
+          <span
+            className={`${mono} rounded-full bg-emerald-300 px-2.5 py-1 text-[7px] font-semibold text-emerald-950 md:text-[9px]`}
+          >
+            Join
+          </span>
+        </div>
       </div>
     </div>
   );
