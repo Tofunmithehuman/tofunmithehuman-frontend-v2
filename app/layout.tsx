@@ -5,6 +5,9 @@ import SmoothScroll from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";
 import CustomCursor from "./components/CustomCursor";
 import Navbar from "./components/Navbar";
+import JsonLD from "./components/JsonLd";
+
+const siteUrl = "https://tofunmithehuman.com";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +35,67 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Oluwatofunmi | Full Stack Developer Portfolio",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Tofunmithehuman — Full Stack Developer",
+    template: "%s · Tofunmithehuman",
+  },
   description:
-    "Portfolio of Bolaji Oluwatofunmi, a Full Stack Developer building secure web apps with animation-rich frontends and scalable backends.",
+    "Portfolio of Bolaji Oluwatofunmi (Tofunmithehuman), a Full Stack Developer building secure, animation-rich web apps with Next.js, React, Express, MongoDB and Redis.",
+  keywords: [
+    "Full Stack Developer",
+    "Next.js Developer",
+    "React Developer",
+    "Lagos",
+    "Nigeria",
+    "Tofunmithehuman",
+    "Bolaji Oluwatofunmi",
+    "Web Developer",
+    "GSAP",
+    "Express.js",
+  ],
+  authors: [{ name: "Bolaji Oluwatofunmi", url: siteUrl }],
+  creator: "Bolaji Oluwatofunmi",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Tofunmithehuman",
+    title: "Tofunmithehuman — Full Stack Developer",
+    description:
+      "Full Stack Developer building secure, animation-rich frontends and scalable backends. Based in Lagos, Nigeria.",
+    images: [
+      {
+        url: "/og-banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Tofunmithehuman — Full Stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tofunmithehuman — Full Stack Developer",
+    description:
+      "Full Stack Developer building secure, animation-rich frontends and scalable backends.",
+    images: ["/og-banner.png"],
+    creator: "@tofunmithehuman",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  category: "technology",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -44,6 +105,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${plusJakartaSans.variable} ${syne.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-black">
+        <JsonLD />
         <Navbar />
         <SmoothScroll>{children}</SmoothScroll>
         <ScrollToTop />
